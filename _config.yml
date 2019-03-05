@@ -1,21 +1,45 @@
-# main text of home
-name: lzx
-bio: A boy who learns the cs
+# Site settings
+title_left    : "LZX's"
+title_right   : "spaceship" # default: ""
+description   : "about cs learning."
+keywords      : "cs code"
+url           : https://cookieli.github.io/blog # site url
+baseurl       : "" # apply repo name like "/myproject" if used under gh-pages branch, else (under master branch) just leave empty/blank
+cover         : "" # image uri like logo/cover image for site seo
 
-description: A blog about technology and stuff related
+google_analytics  : coder.lzx.dev@gmail.com
+twitter_username  : ""
+comments_enabled  : true # if enabled (set to true), please provide your disqus_username
+disqus_shortname  : "lzx"
+postshare_enabled : true
 
-picture: assets/images/picture.jpg
+# Build settings
+permalink   : /:year/:title/
+markdown    : kramdown
+highlighter : rouge
 
-url: http://lzx.github.io
-# your url: http://USERNAME.github.io
+source      : ./
+destination : ./_site
 
-# if you don't have any of social below, comment the line
-# facebook: myfacebook
-# twitter: mytwitter
-github: cookieli
-email: coder.lzx.dev@gmail.com
+# Sass configuration
+sass:
+  sass_dir  : assets/scss
+  style     : compressed # expanded
 
-gems:
-  - jekyll-seo-tag
+# Author settings
+author:
+  name     : "John Doe"
 
-exclude: [README.md, Gemfile, Gemfile.lock, _site, Rakefile, travis.sh, vendor]
+plugins:
+  - jekyll-sitemap
+  - bourbon
+  - jekyll-paginate
+
+# navbar pages
+navbar:
+  - slug : about
+    title: About
+  - slug : blog
+    title: Blog
+
+exclude: ["gulp", "node_modules", "bower", "bower_components", "config.rb", "src", "Gemfile", "Gemfile.lock", ".rvmrc", ".rbenv-version", "package.json", "gulpfile.js", "README.md", "Rakefile", "changelog.md", "script"]
