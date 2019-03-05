@@ -15,7 +15,7 @@ url: http://lzx.github.io
 github: https://github.com/cookieli
 email: coder.lzx.dev@gmail.com
 
-gems:
-  - jekyll-seo-tag
+#gems:
+#  - jekyll-seo-tag
 
 exclude: [README.md, Gemfile, Gemfile.lock, _site, Rakefile, travis.sh, vendor]
