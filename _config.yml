@@ -1,6 +1,6 @@
 # Site settings
 title_left    : "LZX's"
-title_right   : "spaceship" # default: ""
+title_right   : " spaceship" # default: ""
 description   : "about cs learning."
 keywords      : "cs code"
 url           : https://cookieli.github.io/blog # site url
