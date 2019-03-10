@@ -16,14 +16,14 @@ author: Lzx
 #### 工作流程
 1. 电脑调用相关api通过网络与　Client Communication Manager建立连接。
 　　建立连接的方式:
-　　		1. 	client 直接与　database server 建立连接　称为two-tier或者client-server模式
-　　		2. 	通过middle-tier-server来通过某种协议来代理client和server的连接，称为three-tier模式
-　　		3. 	还可以在middle-tier-server和DBMS直接加一层application server来代理连接。
-　　连接方式的多样性对client communication manager的要求:   需要兼容多种连接协议。
-　　Client Communication Manager的作用:
-　　建立和记录来自请求者的连接，
-　　回应请求者的sql命令
-　　返回合适的控制和数据信息。
+　　		1. 	client 直接与　database server 建立连接　称为two-tier或者client-server模式<br/>
+　　		2. 	通过middle-tier-server来通过某种协议来代理client和server的连接，称为three-tier模式<br/>
+　　		3. 	还可以在middle-tier-server和DBMS直接加一层application server来代理连接。<br/>
+　　连接方式的多样性对client communication manager的要求:   需要兼容多种连接协议。<br/>
+　　Client Communication Manager的作用:<br/>
+　　建立和记录来自请求者的连接，<br/>
+　　回应请求者的sql命令   <br/>
+　　返回合适的控制和数据信息。<br/>
 　　
 2. 收到sql的命令后，DBMS分配一个计算线程给该command，
      同时确保线程的数据和命令输出通过client communication manager与client连接。
