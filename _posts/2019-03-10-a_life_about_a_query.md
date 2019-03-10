@@ -15,7 +15,7 @@ author: Lzx
 机长请求本次飞机的乘客名单
 #### 工作流程
 1. 电脑调用相关api通过网络与　Client Communication Manager建立连接。
-　　建立连接的方式:
+　　建立连接的方式:<br/>
 　　		1. 	client 直接与　database server 建立连接　称为two-tier或者client-server模式<br/>
 　　		2. 	通过middle-tier-server来通过某种协议来代理client和server的连接，称为three-tier模式<br/>
 　　		3. 	还可以在middle-tier-server和DBMS直接加一层application server来代理连接。<br/>
