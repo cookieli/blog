@@ -1,4 +1,4 @@
-###Abstract
+### Abstract
 MapReduce是一个编程模型，用来处理和生成大型数据。其中map处理键值对，用来生成一系列中间pair,reduce用来将同一键的值集合起来。<br/>
 以这样模型生成的代码并行化且隐藏了切割数据，调度机器的细节。<br/>
 ### Introduction
@@ -73,20 +73,20 @@ straggler: 一个机器花非常态的长时间来完成完成最后几个任务
 在MapReduce任务接近完成时，对于in-progress task进行备份执行，那个先完成算哪个，这样提高了资源的利用率。<br/>
 ### Refinement
 
-####1. Partitioning Function
+#### Partitioning Function
 用户定义R个reduce，那么对于intermediate key如何切分到相关领域呢，hash,针对特定数据可以采用不同的切分方法。<br/>
-####2. Ordered Guarantees
+#### Ordered Guarantees
 对intermediate key处理时进行升序处理，使每个切分的输出文件sorted<br/>
-####3. Combiner Function
+#### Combiner Function
 由于map会产生特别大的重复的key，所以我们可以在其向reduce发送时先进性一次combine来进行处理，combine和reduce区别在于输出不同，combine输出intermediate key, reduce输出 final output file.<br/>
-####4. input type
+#### input type
 MapReduce支持几种input type.输入类型可以有效的对输入数据进行切分以满足mao任务的要求。<br/>
 我们可以通过实现reader interface完成新类型的支持,且输入不局限于file<br/>
 对output也同理<br/>
-####5. side effects
+#### side effects
 Mapreduce可以产出辅助文件，我们通过应用层保证其幂等性和原子性<br/>
 对于单一任务产出的多个文件我们不保证原子化的俩阶段提交，因此跨文件的一致性需求应该是确定性的。<br/>
-####6. Skipping bad records
+#### Skipping bad records
 我们的mapreduce任务面对特定的record一定会crash,而在某些情况下我们可以跳过crash。<br/>
 MapReduce library可以检测到相应的record并跳过他以继续执行。<br/>
 具体实现思路;<br/>
