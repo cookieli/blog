@@ -1,0 +1,100 @@
+<div class="botui-app-container" id="botui-app">
+    <bot-ui></bot-ui>
+</div>
+    
+<link rel="stylesheet" href="https://unpkg.com/botui/build/botui.min.css" type="text/css" />
+<link rel="stylesheet" href="https://unpkg.com/botui/build/botui-theme-default.css" type="text/css" />
+<script src="https://cdn.rawgit.com/christian-fei/Simple-Jekyll-Search/master/dest/simple-jekyll-search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+<script src="https://unpkg.com/botui/build/botui.min.js"></script>
+    
+<script>
+    (function() {
+
+    var url = 'https://api.github.com/search/repositories?q=';
+    var msgIndex, key;
+    var botui = new BotUI('botui-app')
+
+
+    botui.message.bot({
+    content: '您好！'
+    }).then(init);
+
+
+    function init() {
+    botui.message.bot({
+        delay: 1500, 
+        content: '亲亲对哪个关键词感兴趣呢？可以回答你Github上相关repository的总数哦'
+    }).then(function() {
+
+        return botui.action.text({
+        delay: 1000,
+        action: {
+            placeholder: '例：javascript'
+        }
+        });
+    }).then(function(res) {
+
+        key = res.value;
+        getRepositories(key);
+
+        botui.message.bot({
+        loading: true
+        }).then(function(index) {
+
+        msgIndex = index;
+        });
+    });
+    }
+
+    function getRepositories(keyword) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', url + keyword);
+    xhr.onload = function() {
+        var result = JSON.parse(xhr.responseText);
+
+        showMessage(result.total_count);
+    }
+    xhr.send();
+    }
+
+
+    function showMessage(totalCount) {
+
+    botui.message.update(msgIndex, {
+        content: key + '的repository的总数为：' + totalCount + '个！'
+    }).then(function() {
+        return botui.message.bot({
+        delay: 1500,
+        content: '亲亲还要继续吗？'
+        })
+    }).then(function() {
+
+        return botui.action.button({
+        delay: 1000,
+        action: [{
+            icon: 'circle-thin',
+            text: '嗯',
+            value: true
+        }, {
+            icon: 'close',
+            text: '不了',
+            value: false
+        }]
+        });
+    }).then(function(res) {
+
+        res.value ? init() : end();
+    });
+    }
+
+
+    function end() {
+    botui.message.bot({
+        content: '非常感谢亲亲的使用哦~'
+    })
+    }
+
+    })();
+</script>
