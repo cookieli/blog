@@ -3,7 +3,7 @@ title_left    : "LZX's"
 title_right   : " spaceship" # default: ""
 description   : "about cs learning."
 keywords      : "cs code"
-url           : https://cookieli.github.io/blog # site url
+url           : https://cookieli.github.io # site url
 baseurl       : "" # apply repo name like "/myproject" if used under gh-pages branch, else (under master branch) just leave empty/blank
 cover         : "" # image uri like logo/cover image for site seo
 
