@@ -2,10 +2,15 @@
 layout: default
 title: Home
 ---
+<div id="search-demo-container" style="width:20%;">
+    <input type="text" id="search-input" placeholder="search...">
+    <ul id="results-container"></ul>
+</div>
 
 {% include intro.html %}
 
 <section class="post-list">
+
   <div class="container">
     {% for post in site.posts %}
       {% unless post.next %}
@@ -25,3 +30,18 @@ title: Home
   </div>
 
 </section>
+
+<script src="https://cdn.rawgit.com/christian-fei/Simple-Jekyll-Search/master/dest/simple-jekyll-search.min.js"></script>
+
+<script>
+  window.simpleJekyllSearch = new SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('results-container'),
+    json: '{{ site.baseurl }}/search.json',
+    searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 10,
+    fuzzy: false,
+    exclude: ['Welcome']
+  })
+</script>
