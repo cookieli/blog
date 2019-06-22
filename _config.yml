@@ -1,6 +1,6 @@
 # Site settings
-title_left    : "LZX's"
-title_right   : " spaceship" # default: ""
+title_left    : "软件"
+title_right   : " 评论" # default: ""
 description   : "about cs learning."
 keywords      : "cs code"
 url           : https://cookieli.github.io # site url
