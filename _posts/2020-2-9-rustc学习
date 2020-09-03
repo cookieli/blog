@@ -1,0 +1,28 @@
+
+./x.py build -i --stage 1 src/libstd
+这个命令做了如下工作:
+build libstd使用 stage0 compiler.
+build librustc使用 stage0 compiler,这会产生stage1 compiler.
+build libstd 使用stage1 compiler.
+-i 代表使用增量编译
+缺点:
+incremental只在你工作同一个compiler twice的情况下才会有用.
+但是我们每次都要建立一个全新的compiler,
+x.py build 额外执行的命令:
+build librustc 和rustc 使用 stage1 compiler.
+  产生新的compiler称为 stage2 compiler.
+  使用libstd 建立新的 stage2 compiler.
+  使用 stage2 compiler来建立 librustdoc 和一些其他的事情
+  
+ r ust workflow 流程
+1 看是否compiler可以建立 ：用check
+使用git bisect来track哪一个commit 出现问题
+使用incremental build来很快的进行编译
+采用的指令:
+./x.py build -i --stage 1 src/libstd
+接下来的指令:
+./x.py build -i --stage 1 src/libstd --keep-stage 1
+--keep-stage 1 假设old std 可以被re-used,
+## 编译器的测试框架
+
+  
